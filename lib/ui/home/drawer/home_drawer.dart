@@ -6,7 +6,9 @@ import '../../../utils/assets_manager.dart';
 import 'drawer_item.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+  HomeDrawer({required this.onGoToHomeClicked});
+
+  Function onGoToHomeClicked;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,15 @@ class HomeDrawer extends StatelessWidget {
           padding: EdgeInsets.only(top: 16,left: 8,right: 16),
           child: Column(
             children: [
-              DrawerItem(imgPath: AssetsManager.homeIcon, title: "Go To Home",),
+              InkWell(
+                  onTap: () {
+                    onGoToHomeClicked();
+                    Navigator.pop(context);
+                  },
+                  child: DrawerItem(
+                    imgPath: AssetsManager.homeIcon,
+                    title: "Go To Home",
+                  )),
               SizedBox(height: height*(24/screenHeight),),
               Divider(
                 color: AppColors.whiteColor,

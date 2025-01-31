@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news/utils/app_colors.dart';
 import 'package:news/utils/app_styles.dart';
+
 import '../../../model/NewsResponse.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class NewsItem extends StatelessWidget {
-  NewsItem({super.key, required this.news});
-  News news;
+  const NewsItem({super.key, required this.news});
+
+  final News news;
   @override
   Widget build(BuildContext context) {
     var height=MediaQuery.of(context).size.height;
@@ -19,7 +21,7 @@ class NewsItem extends StatelessWidget {
       margin:EdgeInsets.only(top: height*(16/screenHeight),
           left: width*(16/screenWidth),right: width*(16/screenWidth)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
         border: Border.all(color: Theme.of(context).indicatorColor, width: 2),
       ),
       child: Column(
@@ -29,8 +31,13 @@ class NewsItem extends StatelessWidget {
             child: CachedNetworkImage(
               fit: BoxFit.fill,
               width: double.infinity,
-              imageUrl: news.urlToImage??"",
-              placeholder: (context, url) => CircularProgressIndicator(),
+                height: height * (220 / screenHeight),
+                imageUrl: news.urlToImage??"",
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.greyColor,
+                  ),
+                ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
 
             )
