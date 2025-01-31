@@ -85,8 +85,7 @@ class CategoryView extends StatelessWidget {
                           ],
                           // icons: [null, Icons.arrow_forward_ios],
                           onToggle: (index1) {
-                            print('switched to: $index');
-                            onViewAllClicked(categoriesList[index].id);
+                            onViewAllClicked(categoriesList[index]);
                           },
                         ),
                       ),

@@ -5,12 +5,12 @@ import 'package:news/api/api_constant.dart';
 import 'package:news/api/end_points.dart';
 import 'package:news/model/NewsResponse.dart';
 import 'package:news/model/SourceResponse.dart';
+import 'package:news/model/category_card_model.dart';
 
 // https://newsapi.org/v2/top-headlines/sources?apiKey=3777cabecf3f4533b64010f6349070b3
 class ApiManager {
-  static Future<SourceResponse?> getSource(String categoryId) async {
-    Uri url = Uri.https(ApiConstant.baseUrl, EndPoints.sourceApi, {
-      "apiKey": ApiConstant.apiKey, "category": categoryId});
+  static Future<SourceResponse?> getSource(CategoryCardModel category) async {
+    Uri url = Uri.https(ApiConstant.baseUrl, EndPoints.sourceApi, {"apiKey": ApiConstant.apiKey, "category": category.id});
 
     try {
       var response = await http.get(url);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/api/api_manager.dart';
+import 'package:news/model/category_card_model.dart';
 import 'package:news/ui/home/category/category_details.dart';
 import 'package:news/ui/home/category/category_view.dart';
 import 'package:news/ui/home/drawer/home_drawer.dart';
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       appBar: AppBar(
         title: Text(
-          selectedCategoryId == null ? "Home" : selectedCategoryId!,
+          selectedCategoryId == null ? "Home" : selectedCategoryId!.title,
           style: Theme.of(context).textTheme.headlineLarge ,
         ),
       ),
@@ -33,14 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
               onViewAllClicked: onViewAllClicked,
             )
           : CategoryDetails(
-              categoryId: selectedCategoryId!,
+              category: selectedCategoryId!,
             ),
     );
   }
 
-  String? selectedCategoryId;
+  CategoryCardModel? selectedCategoryId;
 
-  onViewAllClicked(String newSelectedCategoryId) {
+  onViewAllClicked(CategoryCardModel newSelectedCategoryId) {
     ApiManager.getSource(newSelectedCategoryId);
     selectedCategoryId = newSelectedCategoryId;
     setState(() {});
