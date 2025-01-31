@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/di/dependency_injection.dart';
 import 'package:news/model/SourceResponse.dart';
 import 'package:news/ui/home/news/cubit/news_view_model_cubit.dart';
 import 'package:news/ui/home/news/news_item.dart';
@@ -20,7 +21,8 @@ class _NewsWidgetState extends State<NewsWidget> {
   // TODO: MVVM provider
   // NewsWidgetViewModel viewModel = NewsWidgetViewModel();
   // TODO MVVM Cubit
-  NewsViewModelCubit viewModel = NewsViewModelCubit();
+  NewsViewModelCubit viewModel =
+      NewsViewModelCubit(newsRepo: Di.injectNewsRepo());
   @override
   void initState() {
     // TODO: MVVM cubit

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/di/dependency_injection.dart';
 import 'package:news/model/category_card_model.dart';
 import 'package:news/ui/home/category/source_tab_widget.dart';
-import 'package:provider/provider.dart';
 
-import 'category_details_view_model.dart';
 import 'cubit/source_state.dart';
 import 'cubit/soure_view_model_cubit.dart';
 
@@ -20,7 +19,8 @@ class CategoryDetails extends StatefulWidget {
 // todo: MVVM Provider
 // CategoryDetailsViewModel viewModel = CategoryDetailsViewModel();
 // todo: MVVM Cubit
-SourceViewModelCubit viewModel = SourceViewModelCubit();
+SourceViewModelCubit viewModel =
+    SourceViewModelCubit(sourceRepo: Di.injectSourceRepo());
 
 class _CategoryDetailsState extends State<CategoryDetails> {
   @override

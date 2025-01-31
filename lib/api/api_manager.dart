@@ -9,8 +9,9 @@ import 'package:news/model/category_card_model.dart';
 
 // https://newsapi.org/v2/top-headlines/sources?apiKey=3777cabecf3f4533b64010f6349070b3
 class ApiManager {
-  static Future<SourceResponse?> getSource(CategoryCardModel category) async {
-    Uri url = Uri.https(ApiConstant.baseUrl, EndPoints.sourceApi, {"apiKey": ApiConstant.apiKey, "category": category.id});
+  Future<SourceResponse?> getSource(CategoryCardModel category) async {
+    Uri url = Uri.https(ApiConstant.baseUrl, EndPoints.sourceApi,
+        {"apiKey": ApiConstant.apiKey, "category": category.id});
 
     try {
       var response = await http.get(url);
@@ -23,19 +24,15 @@ class ApiManager {
   }
 
   // https://newsapi.org/v2/everything?q=bitcoin&apiKey=3777cabecf3f4533b64010f6349070b3
-  static Future<NewsResponse?> getNewsBySourceId(String sourceId)async{
-    Uri url=Uri.https(ApiConstant.baseUrl,EndPoints.newsApi,{
-      "apiKey":ApiConstant.apiKey,
-      "sources":sourceId
-    });
+  Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
+    Uri url = Uri.https(ApiConstant.baseUrl, EndPoints.newsApi,
+        {"apiKey": ApiConstant.apiKey, "sources": sourceId});
     try {
-      var response=await http.get(url);
+      var response = await http.get(url);
 
       return NewsResponse.fromJson(jsonDecode(response.body));
     } catch (e) {
       throw e;
     }
   }
-
-
 }

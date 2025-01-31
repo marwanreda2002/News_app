@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  ApiManager apiManager = ApiManager();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CategoryCardModel? selectedCategoryId;
 
   onViewAllClicked(CategoryCardModel newSelectedCategoryId) {
-    ApiManager.getSource(newSelectedCategoryId);
+    apiManager.getSource(newSelectedCategoryId);
     selectedCategoryId = newSelectedCategoryId;
     setState(() {});
   }

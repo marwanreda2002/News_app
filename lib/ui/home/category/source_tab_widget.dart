@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news/model/SourceResponse.dart';
 import 'package:news/ui/home/category/source_name_item.dart';
 import 'package:news/ui/home/news/news_widget.dart';
-import 'package:news/ui/home/news/news_widget_view_model.dart';
 
 class SourceTabWidget extends StatefulWidget {
   SourceTabWidget({super.key,required this.sourcesList});
@@ -14,7 +13,8 @@ class SourceTabWidget extends StatefulWidget {
 
 class _SourceTabWidgetState extends State<SourceTabWidget> {
   int selectedIndex=0;
-  NewsWidgetViewModel viewModel = NewsWidgetViewModel();
+
+  // NewsWidgetViewModel viewModel = NewsWidgetViewModel();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
